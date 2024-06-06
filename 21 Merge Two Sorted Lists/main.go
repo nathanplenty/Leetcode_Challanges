@@ -40,19 +40,19 @@ func main() {
 }
 
 // mergeTwoLists merges two sorted linked lists and returns the merged list
-func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	// Base cases: if one list is nil, return the other list
-	if l1 == nil {
-		return l2
+	if list1 == nil {
+		return list2
 	}
-	if l2 == nil {
-		return l1
+	if list2 == nil {
+		return list1
 	}
 	// Recursive cases: merge based on value comparison
-	if l1.Val < l2.Val {
-		l1.Next = mergeTwoLists(l1.Next, l2)
-		return l1
+	if list1.Val < list2.Val {
+		list1.Next = mergeTwoLists(list1.Next, list2)
+		return list1
 	}
-	l2.Next = mergeTwoLists(l1, l2.Next)
-	return l2
+	list2.Next = mergeTwoLists(list1, list2.Next)
+	return list2
 }
