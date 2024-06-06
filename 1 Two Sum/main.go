@@ -5,9 +5,9 @@ import "fmt"
 func main() {
 	fmt.Println("START")
 
-	fmt.Println("Output 1:", twoSumQuad([]int{2, 7, 11, 15}, 9))
-	fmt.Println("Output 2:", twoSumLin([]int{3, 2, 4}, 6))
-	fmt.Println("Output 3:", twoSumQuad([]int{3, 3}, 6))
+	fmt.Println("Output 1:", twoSumQuad([]int{2, 7, 11, 15}, 9), "\nExpected: [0 1]")
+	fmt.Println("Output 2:", twoSumLin([]int{3, 2, 4}, 6), "\nExpected: [1 2]")
+	fmt.Println("Output 3:", twoSumQuad([]int{3, 3}, 6), "\nExpected: [0 1]")
 
 	fmt.Println("STOP")
 }

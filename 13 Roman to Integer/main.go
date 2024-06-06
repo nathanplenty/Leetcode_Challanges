@@ -5,9 +5,9 @@ import "fmt"
 func main() {
 	fmt.Println("START")
 
-	fmt.Println("Output 1:", romanToInt("III"))
-	fmt.Println("Output 2:", romanToInt("LVIII"))
-	fmt.Println("Output 3:", romanToInt("MCMXCIV"))
+	fmt.Println("Output 1:", romanToInt("III"), "\nExpected: 3")
+	fmt.Println("Output 2:", romanToInt("LVIII"), "\nExpected: 58")
+	fmt.Println("Output 3:", romanToInt("MCMXCIV"), "\nExpected: 1994")
 
 	fmt.Println("STOP")
 }
