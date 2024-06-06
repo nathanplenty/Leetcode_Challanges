@@ -5,55 +5,39 @@ import "fmt"
 func main() {
 	fmt.Println("START")
 
-	fmt.Println("Output 1:", romanToInt("III"))
-	fmt.Println("Output 2:", romanToInt("LVIII"))
-	fmt.Println("Output 3:", romanToInt("MCMXCIV"))
+	fmt.Println("Output 1:", longestCommonPrefix([]string{"flower", "flow", "flight"}))
+	fmt.Println("Output 2:", longestCommonPrefix([]string{"dog", "racecar", "car"})) // Fixed the function name
 
 	fmt.Println("STOP")
 }
 
-// romanToInt input roman symbol number, output value integer
-func romanToInt(s string) int {
-	// Create a map to associate each Roman symbol with its corresponding integer value.
-	romanValues := map[byte]int{
-		'I': 1,
-		'V': 5,
-		'X': 10,
-		'L': 50,
-		'C': 100,
-		'D': 500,
-		'M': 1000,
+// longestCommonPrefix takes an array of strings and returns the longest common prefix.
+func longestCommonPrefix(strs []string) string {
+	// If the input array is empty, return "-1" indicating bad input.
+	if len(strs) == 0 {
+		return "-1"
 	}
 
-	// Initialize the sum variable to store the total integer value of the Roman numeral.
-	sum := 0
+	// Save the first string as the initial prefix.
+	prefix := strs[0]
 
-	// Initialize the index variable to iterate over the characters of the input string.
-	i := 0
-
-	// Iterate over the characters of the input string.
-	for i < len(s) {
-		// Get the integer value of the current Roman symbol from the map.
-		value := romanValues[s[i]]
-
-		// If the next symbol has a greater value than the current one, subtract the current value from the total.
-		// Otherwise, add the current value to the total.
-		if i+1 < len(s) && romanValues[s[i+1]] > value {
-			sum -= value
-		} else {
-			sum += value
+	// Iterate through the remaining strings in the array.
+	for i := 1; i < len(strs); i++ {
+		// Compare each character of the current string with the corresponding character of the prefix.
+		j := 0
+		for j < len(prefix) && j < len(strs[i]) && prefix[j] == strs[i][j] {
+			j++
 		}
 
-		// Move to the next symbol in the input string.
-		i++
+		// Update the prefix to contain only the matched characters.
+		prefix = prefix[:j]
+
+		// If no characters match, break the loop as there is no common prefix.
+		if prefix == "" {
+			break
+		}
 	}
 
-	// If the sum is still 0, it means there were no symbols in the input string.
-	// Return -1 in this case to indicate an error.
-	if sum == 0 {
-		return -1
-	}
-
-	// Return the total sum of the Roman numeral.
-	return sum
+	// Return the longest common prefix found.
+	return prefix
 }
