@@ -5,9 +5,9 @@ import "fmt"
 func main() {
 	fmt.Println("START")
 
-	fmt.Println("Output 1: ", isValid("()"))
-	fmt.Println("Output 2: ", isValid("()[]{}"))
-	fmt.Println("Output 3: ", isValid("(]"))
+	fmt.Println("Output 1:", isValid("()"), "\nExpected: true")
+	fmt.Println("Output 2:", isValid("()[]{}"), "\nExpected: true")
+	fmt.Println("Output 3:", isValid("(]"), "\nExpected: false")
 
 	fmt.Println("STOP")
 }
