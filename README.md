@@ -13,3 +13,5 @@ L 14. Longest Common Prefix: Write a function to find the longest common prefix 
 L 20. Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. **Solved**
 
 L 21. Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists. **Solved with recursive**
+
+L 35. Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order. **Solved with (O(n))**
