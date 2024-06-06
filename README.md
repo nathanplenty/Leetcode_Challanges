@@ -9,3 +9,7 @@ L 1. Two Sum: Given an array of integers nums and an integer target, return indi
 L 13. Roman to Integer: Given a roman numeral, convert it to an integer. **Solved**
 
 L 14. Longest Common Prefix: Write a function to find the longest common prefix string amongst an array of strings. **Solved**
+
+L 20. Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. **Solved**
+
+L 21. Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists. **Solved with recursive**
