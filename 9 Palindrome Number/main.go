@@ -5,9 +5,9 @@ import "fmt"
 func main() {
 	fmt.Println("START")
 
-	fmt.Println("Output 1:", isPalindrome(121), "\nExpected: True")
-	fmt.Println("Output 2:", isPalindrome(-121), "\nExpected: False")
-	fmt.Println("Output 3:", isPalindrome(10), "\nExpected: False")
+	fmt.Println("Output 1:", isPalindrome(121), "\nExpected: true")
+	fmt.Println("Output 2:", isPalindrome(-121), "\nExpected: false")
+	fmt.Println("Output 3:", isPalindrome(10), "\nExpected: false")
 
 	fmt.Println("STOP")
 }
