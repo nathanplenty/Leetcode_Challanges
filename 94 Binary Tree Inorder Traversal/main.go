@@ -14,6 +14,6 @@ func main() {
 
 // CODE HEAD COMMENT.
 func CODE() string {
-	// CODE
+	//
 	return "RETURN"
 }
