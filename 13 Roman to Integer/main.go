@@ -14,7 +14,6 @@ func main() {
 
 // romanToInt input roman symbol number, output value integer
 func romanToInt(s string) int {
-	// Create a map to associate each Roman symbol with its corresponding integer value.
 	romanValues := map[byte]int{
 		'I': 1,
 		'V': 5,
@@ -25,35 +24,41 @@ func romanToInt(s string) int {
 		'M': 1000,
 	}
 
-	// Initialize the sum variable to store the total integer value of the Roman numeral.
 	sum := 0
-
-	// Initialize the index variable to iterate over the characters of the input string.
 	i := 0
 
-	// Iterate over the characters of the input string.
 	for i < len(s) {
-		// Get the integer value of the current Roman symbol from the map.
 		value := romanValues[s[i]]
 
-		// If the next symbol has a greater value than the current one, subtract the current value from the total.
-		// Otherwise, add the current value to the total.
 		if i+1 < len(s) && romanValues[s[i+1]] > value {
 			sum -= value
 		} else {
 			sum += value
 		}
 
-		// Move to the next symbol in the input string.
 		i++
 	}
 
-	// If the sum is still 0, it means there were no symbols in the input string.
-	// Return -1 in this case to indicate an error.
 	if sum == 0 {
 		return -1
 	}
 
-	// Return the total sum of the Roman numeral.
 	return sum
 }
+
+/*
+Explanation of the function romanToInt:
+
+1. Create a map to associate each Roman symbol with its corresponding integer value.
+2. Initialize the sum variable to store the total integer value of the Roman numeral.
+3. Initialize the index variable to iterate over the characters of the input string.
+4. Iterate over the characters of the input string:
+   a. Get the integer value of the current Roman symbol from the map.
+   b. Check if the next symbol has a greater value than the current one:
+      - If true, subtract the current value from the total sum.
+      - If false, add the current value to the total sum.
+   c. Move to the next symbol in the input string.
+5. Handle the edge case where sum is still 0 after iterating through the string:
+   - Return -1 to indicate an error (no valid symbols).
+6. Return the total sum of the Roman numeral.
+*/
