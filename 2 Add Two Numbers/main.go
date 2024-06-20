@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// ListNode specified definition for singly-linked list.
+// ListNode given definition for singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -38,6 +38,13 @@ func main() {
 
 	fmt.Println("STOP")
 }
+
+/*
+Constraints given by the problem:
+	a. The number of nodes in each linked list is in the range [1, 100].
+	b. 0 <= Node.val <= 9
+	c. It is guaranteed that the list represents a number that does not have leading zeros.
+*/
 
 // addTwoNumbers (O(n)) takes two linked lists l1 and l2, each representing a non-negative integer.
 // It returns a new linked list representing the sum of l1 and l2.
