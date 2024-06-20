@@ -12,7 +12,7 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// twoSum finds two numbers in the array that add up to the target value using a linear time complexity approach (O(n)).
+// twoSum (O(n)) finds two numbers in the array that add up to the target value.
 func twoSum(nums []int, target int) []int {
 	fmt.Println("FUNC twoSumLin()")
 	numMap := make(map[int]int)
