@@ -35,25 +35,19 @@ Explanation of the function lengthOfLongestSubstring:
 
 1. Map Initialization:
    - Create a map `lastSeen` to store the last positions of each character in the string `s`.
-
 2. Variables Initialization:
    - Initialize `maxLength` to store the length of the longest substring without repeating characters.
    - Initialize `start` to keep track of the starting index of the current substring.
-
 3. Loop through the string:
    - Iterate through each character `s[i]` in the string.
-
 4. Handling Duplicate Characters:
    - Check if the character `s[i]` has been seen before and if its last seen position (`pos`) is within the current substring (`start` to `i`).
    - If yes, update the starting index of the current substring (`start`) to `pos + 1`.
-
 5. Update Last Seen Position:
    - Update the last seen position of the character `s[i]` to `i` in the `lastSeen` map.
-
 6. Update Maximum Length:
    - Calculate the length of the current substring (`i - start + 1`).
    - Update `maxLength` if the current substring length is greater than `maxLength`.
-
 7. Return Result:
    - Return `maxLength`, which represents the length of the longest substring without repeating characters.
 */
