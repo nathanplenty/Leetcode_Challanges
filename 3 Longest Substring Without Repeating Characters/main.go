@@ -12,32 +12,48 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// lengthOfLongestSubstring finds the length of the longest substring without repeating characters
+// lengthOfLongestSubstring (O(n)) finds the length of the longest substring without repeating characters.
 func lengthOfLongestSubstring(s string) int {
-	// Print the input string
-	fmt.Println(s)
-
-	// Map to store the last positions of each character
 	lastSeen := make(map[byte]int)
-
-	// Initialize the length of the longest substring and the starting point of the current substring
 	maxLength, start := 0, 0
 
-	// Loop through the string
 	for i := 0; i < len(s); i++ {
-		// If the character s[i] has been seen and the last seen position is within the current substring
 		if pos, found := lastSeen[s[i]]; found && pos >= start {
-			// Update the starting point of the current substring
 			start = pos + 1
 		}
-		// Update the last seen position of s[i]
 		lastSeen[s[i]] = i
-		// Update the length of the longest substring
 		if i-start+1 > maxLength {
 			maxLength = i - start + 1
 		}
 	}
 
-	// Return the length of the longest substring without repeating characters
 	return maxLength
 }
+
+/*
+Explanation of the function lengthOfLongestSubstring:
+
+1. Map Initialization:
+   - Create a map `lastSeen` to store the last positions of each character in the string `s`.
+
+2. Variables Initialization:
+   - Initialize `maxLength` to store the length of the longest substring without repeating characters.
+   - Initialize `start` to keep track of the starting index of the current substring.
+
+3. Loop through the string:
+   - Iterate through each character `s[i]` in the string.
+
+4. Handling Duplicate Characters:
+   - Check if the character `s[i]` has been seen before and if its last seen position (`pos`) is within the current substring (`start` to `i`).
+   - If yes, update the starting index of the current substring (`start`) to `pos + 1`.
+
+5. Update Last Seen Position:
+   - Update the last seen position of the character `s[i]` to `i` in the `lastSeen` map.
+
+6. Update Maximum Length:
+   - Calculate the length of the current substring (`i - start + 1`).
+   - Update `maxLength` if the current substring length is greater than `maxLength`.
+
+7. Return Result:
+   - Return `maxLength`, which represents the length of the longest substring without repeating characters.
+*/
