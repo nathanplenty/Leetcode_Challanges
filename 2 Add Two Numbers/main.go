@@ -39,8 +39,8 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// addTwoNumbers takes two linked lists l1 and l2, each representing a non-negative integer.
-// It returns a new linked list representing the sum of l1 and l2 (O(n)).
+// addTwoNumbers (O(n)) takes two linked lists l1 and l2, each representing a non-negative integer.
+// It returns a new linked list representing the sum of l1 and l2.
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	dummy := &ListNode{}
 	current := dummy
