@@ -11,7 +11,7 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// findMedianSortedArrays finds the median of the combined sorted arrays
+// findMedianSortedArrays (O(n+m)) finds the median of the combined sorted arrays.
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	i, j, k := 0, 0, 0
 	merged := make([]int, len(nums1)+len(nums2))
