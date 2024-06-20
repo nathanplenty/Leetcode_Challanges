@@ -12,6 +12,14 @@ func main() {
 	fmt.Println("STOP")
 }
 
+/*
+Constraints given by the problem:
+	a. 2 <= nums.length <= 10^4
+	b. -10^9 <= nums[i] <= 10^9
+	c. -10^9 <= target <= 10^9
+	d. Only one valid answer exists
+*/
+
 // twoSum (O(n)) finds two numbers in the array that add up to the target value.
 func twoSum(nums []int, target int) []int {
 	fmt.Println("FUNC twoSumLin()")
