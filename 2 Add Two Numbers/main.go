@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+// ListNode specified definition for singly-linked list.
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
 func main() {
 	fmt.Println("START")
 
@@ -33,38 +39,52 @@ func main() {
 	fmt.Println("STOP")
 }
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 // addTwoNumbers takes two linked lists l1 and l2, each representing a non-negative integer.
-// It returns a new linked list representing the sum of l1 and l2.
+// It returns a new linked list representing the sum of l1 and l2 (O(n)).
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	dummy := &ListNode{} // Dummy node to facilitate creation of result list
-	current := dummy     // Pointer to current node in the result list
-	carry := 0           // Carry over value initially zero
+	dummy := &ListNode{}
+	current := dummy
+	carry := 0
 
-	// Iterate through lists l1 and l2 and continue if there's a carry
 	for l1 != nil || l2 != nil || carry > 0 {
-		sum := carry // Initialize sum with carry value
+		sum := carry
 
-		// Add values from l1 and move to the next node
 		if l1 != nil {
 			sum += l1.Val
 			l1 = l1.Next
 		}
 
-		// Add values from l2 and move to the next node
 		if l2 != nil {
 			sum += l2.Val
 			l2 = l2.Next
 		}
 
-		carry = sum / 10                        // Update carry for the next iteration
-		current.Next = &ListNode{Val: sum % 10} // Create new node with sum % 10 and link it to the result list
-		current = current.Next                  // Move current pointer to the next node in the result list
+		carry = sum / 10
+		current.Next = &ListNode{Val: sum % 10}
+		current = current.Next
 	}
 
-	return dummy.Next // Return the next node of dummy, which is the head of the resulting list
+	return dummy.Next
 }
+
+/*
+Explanation of the function addTwoNumbers:
+
+1. Dummy Node Initialization:
+   - Create a dummy node to facilitate the creation of the result list.
+   - Initialize a current pointer to keep track of the current node in the result list.
+   - Initialize carry to 0, which initially represents no carry over.
+2. Iteration Through Lists:
+   - Loop continues as long as there are nodes in either l1, l2, or there's a carry.
+   - Compute sum as carry (initially 0).
+3. Adding Values:
+   - If l1 has a node, add its value to sum and move to the next node.
+   - If l2 has a node, add its value to sum and move to the next node.
+4. Carry Calculation:
+   - Update carry to sum / 10 for the next iteration.
+5. Result List Construction:
+   - Create a new node with value sum % 10 and link it to the current node's Next.
+   - Move the current pointer to the newly added node.
+6. Return Result:
+   - Return the head of the resulting list, which is dummy.Next.
+*/
