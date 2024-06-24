@@ -11,19 +11,24 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// removeElement removes all occurrences of 'val' from the slice 'nums' in place.
+// removeElement O(n) removes all occurrences of 'val' from the slice 'nums' in place.
 // It returns the length of the modified slice after removal.
 func removeElement(nums []int, val int) int {
-	// Iterate through the slice 'nums'
-	for i := 0; i < len(nums); {
-		// If current element 'nums[i]' is equal to 'val', remove it from 'nums'
-		if val == nums[i] {
-			nums = append(nums[:i], nums[i+1:]...) // Remove element at index 'i' from 'nums'
-		} else {
-			i++ // Increment 'i' only when 'nums[i]' is not equal to 'val'
+	slow := 0
+	for fast := 0; fast < len(nums); fast++ {
+		if nums[fast] != val {
+			nums[slow] = nums[fast]
+			slow++
 		}
 	}
-
-	// Return the length of the modified slice 'nums'
-	return len(nums)
+	return slow
 }
+
+/*
+Explanation of the function removeElement:
+
+1. Initialize the slow pointer at index 0.
+2. Iterate with the fast pointer from index 0 to the end of the array:
+   a. If `nums[fast]` is not equal to `val`, copy `nums[fast]` to `nums[slow]` and increment `slow`.
+3. Return `slow`, which is the length of the modified slice `nums` without the elements equal to `val`.
+*/
