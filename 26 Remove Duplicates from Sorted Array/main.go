@@ -11,28 +11,30 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// Function removeDuplicates removes duplicates from the given slice nums
+// removeDuplicates O(n) removes duplicates from the given slice nums
 // and returns the number of unique elements.
 func removeDuplicates(nums []int) int {
-	// Initialize current with the first element of nums
-	current := nums[0]
-	// Initialize count to track the number of unique elements
-	count := 1
-	// Iterate over the slice starting from index 1
-	for i := 1; i < len(nums); {
-		// If current element is equal to nums[i], it's a duplicate
-		if current == nums[i] {
-			// Remove the duplicate element from nums
-			nums = append(nums[:i], nums[i+1:]...)
-		} else {
-			// Update current to nums[i], indicating a new unique element
-			current = nums[i]
-			// Increment count for the new unique element
-			count++
-			// Move to the next element in the slice
-			i++
+	if len(nums) == 0 {
+		return 0
+	}
+
+	// Initialize the slow pointer
+	slow := 0
+	for fast := 1; fast < len(nums); fast++ {
+		if nums[fast] != nums[slow] {
+			slow++
+			nums[slow] = nums[fast]
 		}
 	}
-	// Return the number of unique elements
-	return count
+	return slow + 1
 }
+
+/*
+Explanation of the function removeDuplicates:
+
+1. If the input array is empty, return 0.
+2. Initialize the slow pointer at index 0.
+3. Iterate with the fast pointer from index 1 to the end of the array:
+   a. If nums[fast] is not equal to nums[slow], increment the slow pointer and update nums[slow] with nums[fast].
+4. Return slow + 1, which is the number of unique elements.
+*/
