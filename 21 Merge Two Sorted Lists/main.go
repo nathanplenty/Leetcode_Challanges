@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// ListNode struct represents a node in a linked list
+// ListNode given definition for singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -39,16 +39,14 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// mergeTwoLists merges two sorted linked lists and returns the merged list
+// mergeTwoLists (O(n+m)) merges two sorted linked lists and returns the merged list
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	// Base cases: if one list is nil, return the other list
 	if list1 == nil {
 		return list2
 	}
 	if list2 == nil {
 		return list1
 	}
-	// Recursive cases: merge based on value comparison
 	if list1.Val < list2.Val {
 		list1.Next = mergeTwoLists(list1.Next, list2)
 		return list1
@@ -56,3 +54,14 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	list2.Next = mergeTwoLists(list1, list2.Next)
 	return list2
 }
+
+/*
+Explanation of the function mergeTwoLists:
+
+1. If one list is nil, return the other list.
+2. Compare the values of the heads of the two lists.
+3. Recursively merge the lists based on the value comparison:
+   a. If the value of list1's head is less than list2's head, set list1's next to the result of merging the rest of list1 and list2.
+   b. Otherwise, set list2's next to the result of merging list1 and the rest of list2.
+4. Return the head of the merged list.
+*/
