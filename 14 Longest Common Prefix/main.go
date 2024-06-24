@@ -11,33 +11,37 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// longestCommonPrefix takes an array of strings and returns the longest common prefix.
+// longestCommonPrefix (O(n*m)) takes an array of strings and returns the longest common prefix.
 func longestCommonPrefix(strs []string) string {
-	// If the input array is empty, return "(nil)" indicating bad input.
 	if len(strs) == 0 {
 		return "(nil)"
 	}
 
-	// Save the first string as the initial prefix.
 	prefix := strs[0]
 
-	// Iterate through the remaining strings in the array.
 	for i := 1; i < len(strs); i++ {
-		// Compare each character of the current string with the corresponding character of the prefix.
 		j := 0
 		for j < len(prefix) && j < len(strs[i]) && prefix[j] == strs[i][j] {
 			j++
 		}
-
-		// Update the prefix to contain only the matched characters.
 		prefix = prefix[:j]
 
-		// If no characters match, return "(nil)" as there is no common prefix.
 		if prefix == "" {
 			return "(nil)"
 		}
 	}
 
-	// Return the longest common prefix found.
 	return prefix
 }
+
+/*
+Explanation of the function longestCommonPrefix:
+
+1. If the input array is empty, return "(nil)" indicating bad input.
+2. Save the first string as the initial prefix.
+3. Iterate through the remaining strings in the array:
+   a. Compare each character of the current string with the corresponding character of the prefix.
+   b. Update the prefix to contain only the matched characters.
+   c. If no characters match, return "(nil)" as there is no common prefix.
+4. Return the longest common prefix found.
+*/
