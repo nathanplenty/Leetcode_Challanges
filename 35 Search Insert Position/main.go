@@ -12,16 +12,22 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// searchInsert takes in a sorted array of integers (nums) and a target integer.
+// searchInsert O(n) takes in a sorted array of integers (nums) and a target integer.
 func searchInsert(nums []int, target int) int {
-	// Loop through each element of the array.
 	for i := 0; i < len(nums); i++ {
-		// Check if the target is less than or equal to the current element.
 		if target <= nums[i] {
-			// If yes, return the index of the current element.
 			return i
 		}
 	}
-	// If none of the elements are greater than or equal to the target, return the length of the array.
 	return len(nums)
 }
+
+/*
+Explanation of the function searchInsert:
+
+1. Loop through each element of the array `nums`.
+2. For each index `i`:
+   a. Check if the `target` is less than or equal to the current element `nums[i]`.
+   b. If yes, return the index `i`.
+3. If none of the elements are greater than or equal to the `target`, return the length of the array.
+*/
