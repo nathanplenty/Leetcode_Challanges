@@ -12,7 +12,7 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// romanToInt input roman symbol number, output value integer
+// romanToInt (O(i)) input roman symbol number, output value integer
 func romanToInt(s string) int {
 	romanValues := map[byte]int{
 		'I': 1,
