@@ -12,24 +12,32 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// lengthOfLastWord calculates the length of the last word in the string 's'.
+// lengthOfLastWord O(n) calculates the length of the last word in the string 's'.
 // It returns the length of the last word.
 func lengthOfLastWord(s string) int {
-	count := 0     // Initialize a counter for the length of the last word
-	spacer := true // Flag to track if we are in a sequence of spaces
+	count := 0
+	spacer := true
 
-	// Iterate through the string from the end to the beginning
 	for i := len(s); i > 0; i-- {
-		// Check if we have encountered a non-space character
-		if spacer == false && string(s[i-1]) == " " {
-			break // Stop if we encounter a space after the last word
+		if spacer == false && s[i-1] == ' ' {
+			break
 		}
-		// Increment the count if the current character is not a space
-		if string(s[i-1]) != " " {
-			count += 1
-			spacer = false // Reset the spacer flag since we found a non-space character
+		if s[i-1] != ' ' {
+			count++
+			spacer = false
 		}
 	}
 
-	return count // Return the length of the last word
+	return count
 }
+
+/*
+Explanation of the function lengthOfLastWord:
+
+1. Initialize a counter `count` for the length of the last word.
+2. Initialize a flag `spacer` to track if we are in a sequence of spaces.
+3. Iterate through the string `s` from the end to the beginning:
+   a. If `spacer` is false and the current character is a space, break the loop.
+   b. If the current character is not a space, increment the counter `count` and set `spacer` to false.
+4. Return the value of `count`, which represents the length of the last word.
+*/
