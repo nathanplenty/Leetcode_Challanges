@@ -12,29 +12,34 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// plusOne adds one to the number represented by the array of digits.
+// plusOne O(n) adds one to the number represented by the array of digits.
 // If the last digit is not 9, it increments it and returns the updated array.
 // If the last digit is 9, it handles carry-over by setting it to 0 and propagating the carry.
 // If all digits are 9, it adds a new digit '1' at the beginning of the array.
 func plusOne(digits []int) []int {
 	n := len(digits)
-
-	// Check if the last digit is not 9
 	if digits[n-1] != 9 {
-		digits[n-1]++ // Increment the last digit
-		return digits // Return the updated digits array
+		digits[n-1]++
+		return digits
 	}
-
-	// Handle cases where the last digit is 9
 	for i := n - 1; i >= 0; i-- {
 		if digits[i] == 9 {
-			digits[i] = 0 // Set current digit to 0
+			digits[i] = 0
 		} else {
-			digits[i]++   // Increment current digit
-			return digits // Return the updated digits array
+			digits[i]++
+			return digits
 		}
 	}
-
-	// If all digits were 9, prepend '1' to the array
 	return append([]int{1}, digits...)
 }
+
+/*
+Explanation of the function plusOne:
+
+1. Get the length of the digits array `n`.
+2. If the last digit is not 9, increment it and return the updated array.
+3. If the last digit is 9, iterate through the array from the end to the beginning:
+   a. If the current digit is 9, set it to 0.
+   b. If the current digit is not 9, increment it and return the updated array.
+4. If all digits are 9, prepend '1' to the array and return it.
+*/
