@@ -11,37 +11,44 @@ func main() {
 	fmt.Println("STOP")
 }
 
-/*
-Constraints given by the problem:
-	a. 1 <= s.length <= 1000
-	b. s consist of only digits and English letters.
-*/
-
-// longestPalindrome O(n^3) finds the longest palindromic substring in a given string.
+// longestPalindrome O(n^2) finds the longest palindromic substring in a given string.
 func longestPalindrome(s string) string {
-	var palindromes []string
-
-	isPalindrome := func(s string) bool {
-		for i := 0; i < len(s)/2; i++ {
-			if s[i] != s[len(s)-1-i] {
-				return false
-			}
-		}
-		return true
-	}
-
-	for i := 0; i < len(s); i++ {
-		for j := i; j < len(s); j++ {
-			if isPalindrome(s[i : j+1]) {
-				palindromes = append(palindromes, s[i:j+1])
-			}
-		}
+	if len(s) <= 1 {
+		return s
 	}
 
 	var longest string
-	for _, p := range palindromes {
-		if len(p) > len(longest) {
-			longest = p
+
+	isPalindrome := func(s string) bool {
+		runes := []rune(s)
+		length := len(runes)
+
+		for i := 0; i < length/2; i++ {
+			if runes[i] != runes[length-1-i] {
+				return false
+			}
+		}
+
+		return true
+	}
+
+	expandAroundCenter := func(left, right int) string {
+		for left >= 0 && right < len(s) && s[left] == s[right] {
+			left--
+			right++
+		}
+		return s[left+1 : right]
+	}
+
+	for i := 0; i < len(s); i++ {
+		odd := expandAroundCenter(i, i)
+		even := expandAroundCenter(i, i+1)
+
+		if isPalindrome(odd) && len(odd) > len(longest) {
+			longest = odd
+		}
+		if isPalindrome(even) && len(even) > len(longest) {
+			longest = even
 		}
 	}
 
@@ -51,25 +58,26 @@ func longestPalindrome(s string) string {
 /*
 Explanation of the function longestPalindrome:
 
-1. Create a slice to store found palindromes:
-   - Initialize an empty slice of strings called palindromes.
+1. Check if the input string length is less than or equal to 1:
+   - If true, return the input string as it is already a palindrome.
 
-2. Define a helper function isPalindrome to check if a given string is a palindrome:
-   - Iterate through the first half of the string.
-   - Compare the character at the current position with the character at the mirrored position from the end.
-   - If any characters do not match, return false.
-   - If all characters match, return true.
+2. Initialize a variable longest to store the longest palindrome found.
 
-3. Iterate over all possible substrings of s using two nested loops:
-   - The outer loop sets the starting index i of the substring.
-   - The inner loop sets the ending index j of the substring.
-   - Check if the substring s[i:j+1] is a palindrome using the isPalindrome function.
-   - If the substring is a palindrome, append it to the palindromes slice.
+3. Define a helper function isPalindrome to check if a given string is a palindrome:
+   - Convert the string to a slice of runes to properly handle Unicode characters.
+   - Iterate through the first half of the runes.
+   - Compare the rune at the current position with the rune at the mirrored position from the end.
+   - If any runes do not match, return false.
+   - If all runes match, return true.
 
-4. Find the longest palindrome from the palindromes slice:
-   - Initialize a variable longest to store the longest palindrome found.
-   - Iterate over the palindromes slice.
-   - If the current palindrome is longer than the longest, update the longest variable.
+4. Define a helper function expandAroundCenter to find the longest palindrome centered at given indices:
+   - Expand outwards from the center indices as long as the characters at the left and right indices are equal.
+   - Return the substring between the final left and right indices.
 
-5. Return the longest palindrome found.
+5. Iterate over each character in the string to check for palindromes centered at each character (odd length) and between each pair of characters (even length):
+   - Call expandAroundCenter with the current index for odd length palindromes.
+   - Call expandAroundCenter with the current and next index for even length palindromes.
+   - If the palindrome found is longer than the current longest palindrome, update longest.
+
+6. Return the longest palindrome found.
 */
