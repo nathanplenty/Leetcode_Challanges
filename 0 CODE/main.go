@@ -12,6 +12,8 @@ func main() {
 	fmt.Println("STOP")
 }
 
+// CONSTRAINS
+
 // CODE HEAD COMMENT.
 func CODE() string {
 	// CODE
