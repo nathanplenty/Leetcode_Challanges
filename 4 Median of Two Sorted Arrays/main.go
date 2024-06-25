@@ -18,7 +18,7 @@ Constraints given by the problem:
 	c. 0 <= m <= 1000
 	d. 0 <= n <= 1000
 	e. 1 <= m + n <= 2000
-	f. -106 <= nums1[i], nums2[i] <= 106
+	f. -10^6 <= nums1[i], nums2[i] <= 10^6
 */
 
 // findMedianSortedArrays O(n+m) finds the median of the combined sorted arrays.
