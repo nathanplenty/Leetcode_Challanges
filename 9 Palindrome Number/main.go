@@ -12,7 +12,7 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// isPalindrome (O(d)) checks if a given integer is a palindrome.
+// isPalindrome O(d) checks if a given integer is a palindrome.
 func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
