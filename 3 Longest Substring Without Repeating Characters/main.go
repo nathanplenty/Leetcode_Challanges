@@ -12,7 +12,13 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// lengthOfLongestSubstring (O(n)) finds the length of the longest substring without repeating characters.
+/*
+Constraints given by the problem:
+	a. 0 <= s.length <= 5 * 10^4
+	b. s consists of English letters, digits, symbols and spaces.
+*/
+
+// lengthOfLongestSubstring O(n) finds the length of the longest substring without repeating characters.
 func lengthOfLongestSubstring(s string) int {
 	lastSeen := make(map[byte]int)
 	maxLength, start := 0, 0
