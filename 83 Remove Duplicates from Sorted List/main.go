@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+// ListNode given definition for singly-linked list.
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
 func main() {
 	fmt.Println("START")
 
@@ -29,28 +35,28 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// ListNode Definition for singly-linked list.
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-// Function to delete duplicates from a sorted singly-linked list.
+// deleteDuplicates O(n) to delete duplicates from a sorted singly-linked list.
 func deleteDuplicates(head *ListNode) *ListNode {
-	// Initialize a pointer to traverse the linked list.
 	current := head
 
-	// Traverse the list while there are at least two nodes left to compare.
 	for current != nil && current.Next != nil {
-		// Check if the current node's value is equal to the next node's value.
 		if current.Val == current.Next.Val {
-			// If duplicate found, skip the next node by adjusting pointers.
 			current.Next = current.Next.Next
 		} else {
-			// Move to the next node.
 			current = current.Next
 		}
 	}
 
 	return head
 }
+
+/*
+Explanation of the function deleteDuplicates:
+
+1. Initialize a pointer to traverse the linked list.
+2. Traverse the list while there are at least two nodes left to compare:
+   a. Check if the current node's value is equal to the next node's value.
+   b. If a duplicate is found, skip the next node by adjusting pointers.
+   c. If no duplicate is found, move to the next node.
+3. Return the head of the modified linked list.
+*/
