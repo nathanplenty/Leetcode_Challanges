@@ -11,35 +11,41 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// Function to compute the integer square root of a non-negative integer x.
+// mySqrt O(log x) to compute the integer square root of a non-negative integer x.
 func mySqrt(x int) int {
-	// Handle edge cases where x is 0 or 1.
 	if x == 0 || x == 1 {
 		return x
 	}
 
-	// Initialize variables for binary search.
 	left, right := 0, x
 	var result int
 
-	// Perform binary search to find the integer square root.
 	for left <= right {
-		// Calculate the middle point.
 		mid := left + (right-left)/2
 
-		// Check if mid is the square root of x.
 		if mid == x/mid {
 			return mid
 		} else if mid < x/mid {
-			// If mid*mid < x, search in the right half.
 			left = mid + 1
-			result = mid // Keep track of the potential result as the largest integer whose square <= x.
+			result = mid
 		} else {
-			// If mid*mid > x, search in the left half.
 			right = mid - 1
 		}
 	}
 
-	// Return the largest integer whose square <= x.
 	return result
 }
+
+/*
+Explanation of the function mySqrt:
+
+1. Handle edge cases where `x` is 0 or 1.
+2. Initialize variables `left` and `right` for binary search.
+3. Initialize `result` to store the potential result.
+4. Perform binary search to find the integer square root:
+   a. Calculate the middle point `mid`.
+   b. If `mid` is the square root of `x`, return `mid`.
+   c. If `mid*mid` is less than `x`, search in the right half and update `result`.
+   d. If `mid*mid` is greater than `x`, search in the left half.
+5. Return the largest integer whose square is less than or equal to `x`.
+*/
