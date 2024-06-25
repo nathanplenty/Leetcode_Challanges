@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Information given by Problem.
 var nums1 []int
 var nums2 []int
 var m int
@@ -40,5 +41,6 @@ func main() {
 // CODE HEAD COMMENT.
 func merge(nums1 []int, m int, nums2 []int, n int) {
 	// don't write code, will do later
+	
 	fmt.Println(nums1, m, nums2, n)
 }
