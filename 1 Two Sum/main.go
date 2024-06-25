@@ -20,7 +20,7 @@ Constraints given by the problem:
 	d. Only one valid answer exists
 */
 
-// twoSum (O(n)) finds two numbers in the array that add up to the target value.
+// twoSum O(n) finds two numbers in the array that add up to the target value.
 func twoSum(nums []int, target int) []int {
 	fmt.Println("FUNC twoSumLin()")
 	numMap := make(map[int]int)
