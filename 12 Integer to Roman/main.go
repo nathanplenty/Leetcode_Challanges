@@ -12,6 +12,11 @@ func main() {
 	fmt.Println("STOP")
 }
 
+/*
+Constraints given by the problem:
+	a. 1 <= num <= 3999
+*/
+
 // intToRoman O(i) converts an integer to a Roman numeral.
 func intToRoman(num int) string {
 	romanValues := map[int]string{
