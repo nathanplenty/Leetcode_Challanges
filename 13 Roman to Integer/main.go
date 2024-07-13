@@ -12,7 +12,14 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// romanToInt (O(i)) input roman symbol number, output value integer
+/*
+Constraints given by the problem:
+	a. 1 <= s.length <= 15
+	b. s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
+	c. It is guaranteed that s is a valid roman numeral in the range [1, 3999].
+*/
+
+// romanToInt O(i) input roman symbol number, output value integer
 func romanToInt(s string) int {
 	romanValues := map[byte]int{
 		'I': 1,
