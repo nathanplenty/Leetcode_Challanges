@@ -11,7 +11,14 @@ func main() {
 	fmt.Println("STOP")
 }
 
-// longestCommonPrefix (O(n*m)) takes an array of strings and returns the longest common prefix.
+/*
+Constraints given by the problem:
+	a. 1 <= strs.length <= 200
+	b. 0 <= strs[i].length <= 200
+	c. strs[i] consists of only lowercase English letters.
+*/
+
+// longestCommonPrefix O(n*m) takes an array of strings and returns the longest common prefix.
 func longestCommonPrefix(strs []string) string {
 	if len(strs) == 0 {
 		return "(nil)"
