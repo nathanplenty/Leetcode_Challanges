@@ -8,8 +8,8 @@ func main() {
 	fmt.Println("START")
 
 	fmt.Println("Output 1:", threeSum([]int{-1, 0, 1, 2, -1, -4}), "\nExpected: [[-1,-1,2],[-1,0,1]]")
-	fmt.Println("Output 1:", threeSum([]int{0, 0, 1}), "\nExpected: []")
-	fmt.Println("Output 1:", threeSum([]int{0, 0, 0}), "\nExpected: [[0,0,0]]")
+	fmt.Println("Output 2:", threeSum([]int{0, 0, 1}), "\nExpected: []")
+	fmt.Println("Output 3:", threeSum([]int{0, 0, 0}), "\nExpected: [[0,0,0]]")
 
 	fmt.Println("STOP")
 }

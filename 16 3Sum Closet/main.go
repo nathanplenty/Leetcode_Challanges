@@ -8,7 +8,7 @@ func main() {
 	fmt.Println("START")
 
 	fmt.Println("Output 1:", threeSumClosest([]int{-1, 2, 1, -4}, 1), "\nExpected: 2")
-	fmt.Println("Output 1:", threeSumClosest([]int{0, 0, 0}, 1), "\nExpected: 0")
+	fmt.Println("Output 2:", threeSumClosest([]int{0, 0, 0}, 1), "\nExpected: 0")
 
 	fmt.Println("STOP")
 }
