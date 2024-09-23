@@ -1,15 +1,24 @@
 package main
 
+/*
+Two Sum:
+	Given an array of integers nums and an integer target,
+	return indices of the two numbers such that they add up to target.
+	You may assume that each input would have exactly one solution,
+	and you may not use the same element twice.
+	You can return the answer in any order.
+*/
+
 import "fmt"
 
 func main() {
-	fmt.Println("START")
+	fmt.Println("=== START ===")
 
-	fmt.Println("Output 1:", twoSum([]int{2, 7, 11, 15}, 9), "\nExpected: [0 1]")
-	fmt.Println("Output 2:", twoSum([]int{3, 2, 4}, 6), "\nExpected: [1 2]")
-	fmt.Println("Output 3:", twoSum([]int{3, 3}, 6), "\nExpected: [0 1]")
+	fmt.Println("FUNC twoSumLin()\n- Output 1:", twoSum([]int{2, 7, 11, 15}, 9), "\n- Expected: [0 1]")
+	fmt.Println("FUNC twoSumLin()\n- Output 2:", twoSum([]int{3, 2, 4}, 6), "\n- Expected: [1 2]")
+	fmt.Println("FUNC twoSumLin()\n- Output 3:", twoSum([]int{3, 3}, 6), "\n- Expected: [0 1]")
 
-	fmt.Println("STOP")
+	fmt.Println("=== STOP ===")
 }
 
 /*
@@ -22,7 +31,6 @@ Constraints given by the problem:
 
 // twoSum O(n) finds two numbers in the array that add up to the target value.
 func twoSum(nums []int, target int) []int {
-	fmt.Println("FUNC twoSumLin()")
 	numMap := make(map[int]int)
 
 	for i, num := range nums {
