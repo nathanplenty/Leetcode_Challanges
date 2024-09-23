@@ -9,42 +9,96 @@ type ListNode struct {
 }
 
 func main() {
-	fmt.Println("START")
+	fmt.Println("=== START ===")
 
-	// Helper function to print the elements of a linked list
-	printList := func(head *ListNode) {
-		fmt.Print("[")
-		for head != nil {
-			fmt.Print(head.Val)
-			if head.Next != nil {
-				fmt.Print(", ")
-			}
-			head = head.Next
-		}
-		fmt.Println("]")
-	}
+	// Test 1
+	input1 := NewListNode(2, 4, 3)
+	input2 := NewListNode(5, 6, 4)
+	expected1 := NewListNode(7, 0, 8)
+	output1 := addTwoNumbers(input1, input2)
+	printResult(input1, input2, output1, expected1)
 
-	fmt.Print("Output 1: ")
-	printList(addTwoNumbers(&ListNode{2, &ListNode{4, &ListNode{3, nil}}}, &ListNode{5, &ListNode{6, &ListNode{4, nil}}}))
-	fmt.Println("Expected: [7, 0, 8]")
+	// Test 2
+	input1 = NewListNode(0)
+	input2 = NewListNode(0)
+	expected2 := NewListNode(0)
+	output2 := addTwoNumbers(input1, input2)
+	printResult(input1, input2, output2, expected2)
 
-	fmt.Print("Output 2: ")
-	printList(addTwoNumbers(&ListNode{0, nil}, &ListNode{0, nil}))
-	fmt.Println("Expected: [0]")
+	// Test 3
+	input1 = NewListNode(9, 9, 9, 9, 9, 9, 9)
+	input2 = NewListNode(9, 9, 9, 9)
+	expected3 := NewListNode(8, 9, 9, 9, 0, 0, 0, 1)
+	output3 := addTwoNumbers(input1, input2)
+	printResult(input1, input2, output3, expected3)
 
-	fmt.Print("Output 3: ")
-	printList(addTwoNumbers(&ListNode{9, &ListNode{9, &ListNode{9, &ListNode{9, &ListNode{9, &ListNode{9, &ListNode{9, nil}}}}}}}, &ListNode{9, &ListNode{9, &ListNode{9, &ListNode{9, nil}}}}))
-	fmt.Println("Expected: [8, 9, 9, 9, 0, 0, 0, 1]")
-
-	fmt.Println("STOP")
+	fmt.Println("=== STOP ===")
 }
 
-/*
-Constraints given by the problem:
-	a. The number of nodes in each linked list is in the range [1, 100].
-	b. 0 <= Node.val <= 9
-	c. It is guaranteed that the list represents a number that does not have leading zeros.
-*/
+// NewListNode creates a linked list from a list of integers.
+func NewListNode(values ...int) *ListNode {
+	if len(values) == 0 {
+		return nil
+	}
+	head := &ListNode{Val: values[0]}
+	current := head
+	for _, val := range values[1:] {
+		current.Next = &ListNode{Val: val}
+		current = current.Next
+	}
+	return head
+}
+
+// PrintList prints the elements of a linked list with values separated by commas.
+func PrintList(head *ListNode) string {
+	if head == nil {
+		return "[]"
+	}
+	result := "["
+	result += fmt.Sprint(head.Val)
+	head = head.Next
+	for head != nil {
+		result += ", " + fmt.Sprint(head.Val)
+		head = head.Next
+	}
+	result += "]"
+	return result
+}
+
+// ANSI-Escape-Codes for colors
+const (
+	reset = "\033[0m"
+	red   = "\033[31m"
+	green = "\033[32m"
+)
+
+// printResult prints the input, expected, and output in color.
+func printResult(input1, input2, output, expected *ListNode) {
+	expectedStr := PrintList(expected)
+	outputStr := PrintList(output)
+	isMatch := compareLists(output, expected)
+	fmt.Print("FUNC twoSum()\n- Input 1:  ", PrintList(input1), "\n")
+	fmt.Print("- Input 2:  ", PrintList(input2), "\n")
+	fmt.Print("- Output:   ")
+	if isMatch {
+		fmt.Print(green + outputStr + reset + "\n")
+	} else {
+		fmt.Print(red + outputStr + reset + "\n")
+	}
+	fmt.Println("- Expected: " + expectedStr)
+}
+
+// compareLists compares two linked lists and returns true if they match.
+func compareLists(l1, l2 *ListNode) bool {
+	for l1 != nil && l2 != nil {
+		if l1.Val != l2.Val {
+			return false
+		}
+		l1 = l1.Next
+		l2 = l2.Next
+	}
+	return l1 == nil && l2 == nil
+}
 
 // addTwoNumbers O(n) takes two linked lists l1 and l2, each representing a non-negative integer.
 // It returns a new linked list representing the sum of l1 and l2.
@@ -73,25 +127,3 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	return dummy.Next
 }
-
-/*
-Explanation of the function addTwoNumbers:
-
-1. Dummy Node Initialization:
-   - Create a dummy node to facilitate the creation of the result list.
-   - Initialize a current pointer to keep track of the current node in the result list.
-   - Initialize carry to 0, which initially represents no carry over.
-2. Iteration Through Lists:
-   - Loop continues as long as there are nodes in either l1, l2, or there's a carry.
-   - Compute sum as carry (initially 0).
-3. Adding Values:
-   - If l1 has a node, add its value to sum and move to the next node.
-   - If l2 has a node, add its value to sum and move to the next node.
-4. Carry Calculation:
-   - Update carry to sum / 10 for the next iteration.
-5. Result List Construction:
-   - Create a new node with value sum % 10 and link it to the current node's Next.
-   - Move the current pointer to the newly added node.
-6. Return Result:
-   - Return the head of the resulting list, which is dummy.Next.
-*/
