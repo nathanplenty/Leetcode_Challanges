@@ -1,35 +1,85 @@
 package main
 
-/*
-Two Sum:
-	Given an array of integers nums and an integer target,
-	return indices of the two numbers such that they add up to target.
-	You may assume that each input would have exactly one solution,
-	and you may not use the same element twice.
-	You can return the answer in any order.
-*/
-
 import "fmt"
 
 func main() {
 	fmt.Println("=== START ===")
 
-	fmt.Println("FUNC twoSumLin()\n- Output 1:", twoSum([]int{2, 7, 11, 15}, 9), "\n- Expected: [0 1]")
-	fmt.Println("FUNC twoSumLin()\n- Output 2:", twoSum([]int{3, 2, 4}, 6), "\n- Expected: [1 2]")
-	fmt.Println("FUNC twoSumLin()\n- Output 3:", twoSum([]int{3, 3}, 6), "\n- Expected: [0 1]")
+	// Example 1
+	input1 := []int{2, 7, 11, 15}
+	target1 := 9
+	expected1 := []int{0, 1}
+	output1 := twoSum(input1, target1)
+	printResult(input1, target1, expected1, output1)
+
+	// Example 2
+	input2 := []int{3, 2, 4}
+	target2 := 6
+	expected2 := []int{1, 2}
+	output2 := twoSum(input2, target2)
+	printResult(input2, target2, expected2, output2)
+
+	// Example 3
+	input3 := []int{3, 3}
+	target3 := 6
+	expected3 := []int{0, 1}
+	output3 := twoSum(input3, target3)
+	printResult(input3, target3, expected3, output3)
 
 	fmt.Println("=== STOP ===")
 }
 
-/*
-Constraints given by the problem:
-	a. 2 <= nums.length <= 10^4
-	b. -10^9 <= nums[i] <= 10^9
-	c. -10^9 <= target <= 10^9
-	d. Only one valid answer exists
-*/
+// ANSI-Escape-Codes for colors
+const (
+	reset = "\033[0m"
+	red   = "\033[31m"
+	green = "\033[32m"
+)
 
-// twoSum O(n) finds two numbers in the array that add up to the target value.
+// formatSlice converts a slice of integers to a comma-separated string within square brackets.
+func formatSlice(slice []int) string {
+	if len(slice) == 0 {
+		return "[]"
+	}
+
+	result := "["
+	for i, v := range slice {
+		if i > 0 {
+			result += ","
+		}
+		result += fmt.Sprint(v)
+	}
+	result += "]"
+	return result
+}
+
+// printResult prints the input, target, expected output, and actual output in color.
+func printResult(input []int, target int, expected, output []int) {
+	isMatch := compareOutputs(output, expected)
+	fmt.Print("FUNC twoSum()\n- Input:    ", formatSlice(input), "\n- Target:   ", target, "\n- Expected: ")
+	fmt.Print(formatSlice(expected), "\n- Output:   ")
+	if isMatch {
+		fmt.Print(green + formatSlice(output) + reset + "\n")
+	} else {
+		fmt.Print(red + formatSlice(output) + reset + "\n")
+	}
+}
+
+// compareOutputs compares actual and expected outputs and returns true if they match.
+func compareOutputs(actual, expected []int) bool {
+	if len(actual) != len(expected) {
+		return false
+	}
+
+	for i := range actual {
+		if actual[i] != expected[i] {
+			return false
+		}
+	}
+	return true
+}
+
+// twoSum finds two numbers in the array that add up to the target value.
 func twoSum(nums []int, target int) []int {
 	numMap := make(map[int]int)
 
@@ -43,15 +93,3 @@ func twoSum(nums []int, target int) []int {
 
 	return []int{-1, -1}
 }
-
-/*
-Explanation of the function twoSumLin:
-
-1. Create a hashmap to store the value and its index.
-2. Iterate through each element in the array.
-   a. Calculate the complement of the current element.
-   b. Check if the complement is already in the hashmap.
-   c. If the complement is found, return the indices of the two elements.
-   d. Add the current element and its index to the hashmap.
-3. If no pair is found, return [-1, -1].
-*/
